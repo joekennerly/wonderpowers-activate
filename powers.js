@@ -2,8 +2,6 @@ let flight = document.querySelector('#flight')
 let xray = document.querySelector('#xray')
 let mindreading = document.querySelector('#mindreading')
 
-// console.log(xray.classList.contains())
-
 document.querySelector("#activate-flight").addEventListener("click", () => {
   if(flight.classList.contains('disabled')){
     flight.classList.toggle("enabled")
