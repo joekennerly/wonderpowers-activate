@@ -1,39 +1,35 @@
 // One function to rule them all...
 
-// Click anywhere on the page
-document.querySelector("body").addEventListener("click", event => {
-  // If a button is clicked...
-  if (event.target.tagName === "BUTTON") {
-    // ...toggle the class of related sections 
-    const toggleClass = (elementId, state) => {
-      document.querySelector(elementId).classList.toggle(state)
-    }
-    if (event.target.id === "activate-flight") {
-      toggleClass('#flight', 'enabled')
-    }
-    if (event.target.id === "activate-mindreading") {
-      toggleClass('#mindreading', 'enabled')
-    }
-    if (event.target.id === "activate-xray") {
-      toggleClass('#xray', 'enabled')
-    }
-    
-    if (event.target.id === "activate-all") {
-      let powers = event.target.parentNode.childNodes[0].nextSibling.children
+// If a button is clicked...
+document.querySelector(".btn").addEventListener("click", event => {
+  // ...toggle the class of related sections
+  const toggleClass = (elementId, state) => {
+    document.querySelector(elementId).classList.toggle(state);
+  };
+  
+  if (event.target.id === "activate-flight") {
+    toggleClass("#flight", "enabled");
+  }
+  if (event.target.id === "activate-mindreading") {
+    toggleClass("#mindreading", "enabled");
+  }
+  if (event.target.id === "activate-xray") {
+    toggleClass("#xray", "enabled");
+  }
 
-      console.log(powers);
-      
+  let powers = event.target.parentNode.childNodes[0].nextSibling.children;
 
-      powers.forEach(section => {
-        console.log(section);
-        
-      })
-      
+  if (event.target.id === "activate-all") {
+    for (let i = 0; i < powers.length; i++) {
+      let element = powers[i];
+      element.classList.add("enabled");
     }
-    
-    if (event.target.id === "deactivate-all") {
-      console.log(event)
+  }
 
+  if (event.target.id === "deactivate-all") {
+    for (let i = 0; i < powers.length; i++) {
+      let element = powers[i];
+      element.classList.remove("enabled");
     }
   }
 });
