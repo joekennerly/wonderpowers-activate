@@ -1,55 +1,35 @@
-let flight = document.querySelector('#flight')
-let xray = document.querySelector('#xray')
-let mindreading = document.querySelector('#mindreading')
+// One function to rule them all...
 
-// console.log(xray.classList.contains())
+// If a button is clicked...
+document.querySelector(".btn").addEventListener("click", event => {
+  // ...toggle the class of related sections
+  const toggleClass = (elementId, state) => {
+    document.querySelector(elementId).classList.toggle(state);
+  };
+  
+  if (event.target.id === "activate-flight") {
+    toggleClass("#flight", "enabled");
+  }
+  if (event.target.id === "activate-mindreading") {
+    toggleClass("#mindreading", "enabled");
+  }
+  if (event.target.id === "activate-xray") {
+    toggleClass("#xray", "enabled");
+  }
 
-document.querySelector("#activate-flight").addEventListener("click", () => {
-  if(flight.classList.contains('disabled')){
-    flight.classList.toggle("enabled")
-  }
-})
+  let powers = event.target.parentNode.childNodes[0].nextSibling.children;
 
-document.querySelector("#activate-mindreading").addEventListener("click", () => {
-  if(mindreading.classList.contains('disabled')){
-    mindreading.classList.toggle("enabled")
+  if (event.target.id === "activate-all") {
+    for (let i = 0; i < powers.length; i++) {
+      let element = powers[i];
+      element.classList.add("enabled");
+    }
   }
-})
 
-document.querySelector("#activate-xray").addEventListener("click", () => {
-  if(xray.classList.contains('disabled')){
-    xray.classList.toggle("enabled")
+  if (event.target.id === "deactivate-all") {
+    for (let i = 0; i < powers.length; i++) {
+      let element = powers[i];
+      element.classList.remove("enabled");
+    }
   }
-})
-
-document.querySelector('#activate-all').addEventListener("click", () => {
-
-  if(xray.classList.contains('disabled')){
-    xray.classList.remove("disabled")
-    xray.classList.add("enabled")
-  }
-  if(mindreading.classList.contains('disabled')){
-    mindreading.classList.remove("disabled")
-    mindreading.classList.add("enabled")
-  }
-  if(flight.classList.contains('disabled')){
-    flight.classList.remove("disabled")
-    flight.classList.add("enabled")
-  }
-})
-
-document.querySelector('#deactivate-all').addEventListener("click", () => {
-  console.log(`deactivate all powers`);
-  if(xray.classList.contains('enabled')){
-    xray.classList.remove("enabled")
-    xray.classList.add("disabled")
-  }
-  if(mindreading.classList.contains('enabled')){
-    mindreading.classList.remove("enabled")
-    mindreading.classList.add("disabled")
-  }
-  if(flight.classList.contains('enabled')){
-    flight.classList.remove("enabled")
-    flight.classList.add("disabled")
-  }
-})
+});
